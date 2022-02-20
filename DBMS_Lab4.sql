@@ -76,8 +76,7 @@ where psg.Distance >1000 and psg.Bus_Type = 'Sitting';
 /*What will be the Sitting and Sleeper bus charge for Pallavi to travel from Bangalore to 
 Panaji?*/
 
-select psg.Passanger_name, psg.Boarding_city , psg.Destination_city ,
-psg.Boarding_city, pt.Bus_type, pt.Price FROM TravelOnTheGo.Passanger as psg inner join TravelOnTheGo.price_table as pt USING (distance)
+select psg.Passanger_name, psg.Boarding_city , psg.Destination_city , pt.Bus_type, pt.Price FROM TravelOnTheGo.Passanger as psg inner join TravelOnTheGo.price_table as pt USING (distance)
 where ((psg.Boarding_city='Bengaluru' and psg.Destination_city='Panaji')
 or (psg.Boarding_city='Panaji' and psg.Destination_city='Bengaluru'));
 
