@@ -97,11 +97,15 @@ a) Expensive if the cost is more than 1000
 b) Average Cost if the cost is less than 1000 and greater than 500
 c) Cheap otherwise */
 
-SELECT passanger.distance, price_table.price,
-CASE
-	WHEN price_table.price > 1000 THEN "Expensive"
-    WHEN price_table.price < 1000 and price > 500 THEN "Average_Cost"
-    ELSE "Cheap" 
-END as price_table_Catergory
-FROM TravelOnTheGo.Passanger join TravelOnTheGo.price_table on Passanger.distance = price_table.distance
-group by passanger.distance;
+DELIMITER &&
+CREATE PROCEDURE proc()
+BEGIN
+select price_table.distance,price_table.price,
+CASE 
+   WHEN price_table.price>1000 THEN 'Expensive'
+   WHEN price_table.price<1000 and price_table.price>500 THEN 'Average Cost'
+   ELSE 'Cheap '
+END AS Verdict from price_table ;
+END &&
+DELIMITER ;
+CALL proc();
